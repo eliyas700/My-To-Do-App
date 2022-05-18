@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import useTodo from "../../Hooks/useTodo";
+import AddTodo from "./TodoItem/AddTodo";
 import TodoItem from "./TodoItem/TodoItem";
 
 const ToDo = () => {
-  const [toDos, setTodos] = useState([]);
-  useEffect(() => {
-    fetch("TodoList.json")
-      .then((res) => res.json())
-      .then((data) => setTodos(data));
-  }, []);
+  const [toDos, setTodos] = useTodo([]);
+
   return (
-    <div className="row">
-      {toDos.map((toDo) => (
-        <TodoItem toDo={toDo}></TodoItem>
-      ))}
+    <div className="container-fluid">
+      <div className="row">
+        {toDos.map((toDo, index) => (
+          <TodoItem key={index} toDo={toDo}></TodoItem>
+        ))}
+      </div>
+      <div className="mx-auto text-center my-4">
+        <Button as={Link} to="/addTask" variant="primary">
+          Add New Task
+        </Button>
+      </div>
     </div>
   );
 };
