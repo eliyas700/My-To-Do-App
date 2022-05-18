@@ -2,7 +2,7 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div>
+    <div className="w-100 mx-auto ">
       <button className="btn btn-primary" type="button" disabled>
         <span
           className="spinner-grow spinner-grow-sm"

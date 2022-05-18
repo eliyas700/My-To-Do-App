@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddTodo = () => {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const title = event.target.name.value;
@@ -25,6 +27,7 @@ const AddTodo = () => {
         console.log(result.acknowledged);
         if (result.acknowledged) {
           toast.success("Successfully Added");
+          navigate("/");
         }
       });
     event.target.reset();
@@ -32,7 +35,7 @@ const AddTodo = () => {
 
   return (
     <div>
-      <h2>Add Your Next Task</h2>
+      <h4 className="text-center text-primary my-4">Add Your Next Task</h4>
       <Form
         onSubmit={handleSubmit}
         style={{ width: "380px" }}
