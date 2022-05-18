@@ -9,7 +9,7 @@ const TodoItem = ({ toDo }) => {
     console.log(id);
     const proceed = window.confirm(`Are You Sure,Want to Delete ${name}?`);
     if (proceed) {
-      const url = `http://localhost:5000/tasks/${id}`;
+      const url = `https://pacific-lake-06904.herokuapp.com/tasks/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -25,7 +25,7 @@ const TodoItem = ({ toDo }) => {
 
   const handleCompleted = (id) => {
     //Send Data to the Server Site
-    fetch(`http://localhost:5000/tasks?id=${id}`, {
+    fetch(`https://pacific-lake-06904.herokuapp.com/tasks?id=${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())

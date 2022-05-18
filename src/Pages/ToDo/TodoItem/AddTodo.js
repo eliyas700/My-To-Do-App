@@ -14,7 +14,7 @@ const AddTodo = () => {
       description: description,
       isCompleted: "false",
     };
-    const url = `http://localhost:5000/tasks`;
+    const url = `https://pacific-lake-06904.herokuapp.com/tasks`;
     fetch(url, {
       method: "POST",
       headers: {

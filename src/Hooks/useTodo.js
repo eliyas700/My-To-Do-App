@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const useTodo = () => {
   const [toDos, setTodos] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/tasks")
+    fetch("https://pacific-lake-06904.herokuapp.com/tasks")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, [toDos]);
