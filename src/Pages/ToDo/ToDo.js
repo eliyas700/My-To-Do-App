@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useTodo from "../../Hooks/useTodo";
-import AddTodo from "./TodoItem/AddTodo";
+
 import TodoItem from "./TodoItem/TodoItem";
 
 const ToDo = () => {

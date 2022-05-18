@@ -1,12 +1,13 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import toast from "react-hot-toast";
 import useTodo from "../../../Hooks/useTodo";
 const TodoItem = ({ toDo }) => {
   const [toDos, setTodos] = useTodo([]);
   const { _id, name, description, isCompleted } = toDo;
   const handleDelete = (id) => {
     console.log(id);
-    const proceed = window.confirm("Are You Sure?");
+    const proceed = window.confirm(`Are You Sure,Want to Delete ${name}?`);
     if (proceed) {
       const url = `http://localhost:5000/tasks/${id}`;
       fetch(url, {
@@ -17,6 +18,7 @@ const TodoItem = ({ toDo }) => {
           console.log(data);
           const remaining = toDos.filter((item) => item._id !== id);
           setTodos(remaining);
+          toast.success(`You Have Deleted ${name} Task`);
         });
     }
   };
@@ -30,6 +32,9 @@ const TodoItem = ({ toDo }) => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
+          toast.success(
+            "Congratulations You Have Successfully Completed the Task '👏'"
+          );
         }
       });
   };

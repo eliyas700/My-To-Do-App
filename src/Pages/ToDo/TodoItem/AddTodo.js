@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import toast from "react-hot-toast";
 import useTodo from "../../../Hooks/useTodo";
 
 const AddTodo = () => {
@@ -21,11 +22,13 @@ const AddTodo = () => {
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
-      .then((result) => console.log(result));
+      .then((result) => {
+        console.log(result.acknowledged);
+        if (result.acknowledged) {
+          toast.success("Successfully Added");
+        }
+      });
     event.target.reset();
-    // const title = event.target.name.value;
-    // const description = event.target.description.value;
-    // const obj = { name: title, description: description, isCompleted: false };
   };
 
   return (
@@ -38,12 +41,13 @@ const AddTodo = () => {
       >
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Title</Form.Label>
-          <Form.Control type="text" name="name" placeholder="Title" />
+          <Form.Control type="text" name="name" required placeholder="Title" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label>Task Detail</Form.Label>
           <Form.Control
             placeholder="Description"
+            required
             name="description"
             as="textarea"
             rows={3}
