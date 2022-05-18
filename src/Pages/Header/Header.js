@@ -8,8 +8,8 @@ import auth from "../../firebase.init";
 const Header = () => {
   const [user] = useAuthState(auth);
   return (
-    <div>
-      <Navbar collapseOnSelect expand="lg">
+    <div className="mb-2">
+      <Navbar collapseOnSelect variant="dark" bg="secondary" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/">
             My To-Do
