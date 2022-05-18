@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import toast from "react-hot-toast";
-import useTodo from "../../../Hooks/useTodo";
 
 const AddTodo = () => {
   const handleSubmit = (event) => {
