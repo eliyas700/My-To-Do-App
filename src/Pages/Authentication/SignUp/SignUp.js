@@ -1,17 +1,22 @@
 import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import toast from "react-hot-toast";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, upadeProfileError] = useUpdateProfile(auth);
+  const navigate = useNavigate();
+  if (user) {
+    navigate("/");
+  }
   let errorMsg;
   if (error) {
     errorMsg = <p className="text-danger">{error.message}</p>;
@@ -21,9 +26,11 @@ const SignUp = () => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    await createUserWithEmailAndPassword(email, password);
-    await updateProfile({ displayName: name });
-    toast.success("Creating Account");
+    if (!error) {
+      await createUserWithEmailAndPassword(email, password);
+      await updateProfile({ displayName: name });
+      toast.success("Creating Account");
+    }
   };
   return (
     <div
@@ -78,6 +85,9 @@ const SignUp = () => {
         </small>
       </p>
       <p>{errorMsg}</p>
+      <div>
+        <SocialLogin></SocialLogin>
+      </div>
     </div>
   );
 };
