@@ -10,7 +10,7 @@ const AddTodo = () => {
     const body = {
       name: title,
       description: description,
-      isCompleted: false,
+      isCompleted: "false",
     };
     const url = `http://localhost:5000/tasks`;
     fetch(url, {
